@@ -1,0 +1,68 @@
+■phpMyAdmin
+http://localhost:8080/
+
+■Django サーバー
+python manage.py runserver
+http://localhost:8000/
+
+■Djangoスタートコマンド
+①django-admin startproject <プロジェクト名> .
+
+②settings.pyの設定変更
+  ※DBなど
+
+■アプリ追加手順
+①python manage.py startapp <アプリ名>
+②settings.pyに、アプリを追加
+
+■DB更新
+①<アプリ名>/models.pyにDBモデルを作成
+②python manage.py makemigrations <アプリ名>
+③python manage.py migrate
+
+■管理用ユーザー作成
+①python manage.py createsuperuser
+②ユーザー名、メールアドレス、パスワードを入力
+
+■requirements.txt生成
+pip freeze > requirements.txt
+
+
+
+■ライブラリ
+電話番号(無)
+https://www.delftstack.com/ja/howto/django/django-phone-number-field/
+pip install django-phonenumber-field[phonenumberslite]
+
+
+■その他
+models一覧
+https://kuma-server.com/model-field/#toc17
+
+郵便番号の実装
+https://qiita.com/kk-ster/items/4618dd0a499c2c405b47
+https://github.com/yubinbango/yubinbango
+
+クエリセット
+https://qiita.com/uenosy/items/54136aff0f6373957d22
+
+Django学習
+https://django.kurodigi.com/author/kuro/
+
+https://di-acc2.com/tag/django/
+
+
+参考サイト
+ＳＦＡ
+https://qiita.com/sikkim/items/365cb1211a3b8ca7b410
+https://free-sfa-demo.herokuapp.com/
+Googleアカウント　
+tkhr915@gmail.com
+
+
+■JS・CSS
+https://semantic-ui.com/elements/button.html
+Bootstarap
+https://getbootstrap.jp/docs/5.0/getting-started/introduction/
+MDB
+https://mdbootstrap.com/docs/standard/

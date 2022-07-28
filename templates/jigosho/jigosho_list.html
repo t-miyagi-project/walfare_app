@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h1>商品一覧</h1>
+
+<a class="btn btn-outline-dark" href="*">新規登録</a>
+<table class="table">
+    <thead>
+        <tr>
+            <td>ジャンル</td>
+            <td>商品名</td>
+            <td>価格</td>
+            <td>サイクル</td>
+            <td>削除フラグ</td>
+            <td>備考</td>
+            <td></td>
+        </tr>
+    </thead>
+    {% for product in jigo_mst_list %}
+    <tr>
+        <td>{{ product.jigo_name }}</td>
+        <td>{{ product.jigo_name }}</td>
+        <td>{{ product.url }} 円</td>
+        <td>{{ product.mail }}日</td>
+        <td>{{ product.tel }}</td>
+        <td>{{ product.biko }}</td>
+        <td>
+            <a class="btn btn-primary" href="*">編集</a>
+            <a class="btn btn-danger" href="*">削除</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="d-flex justify-content-between">
+    <div>
+        {# ページの表示 #}
+        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }} ページ<br>
+    </div>
+    <div class="btn-group">
+        {# 前へ #}
+        {% if page_obj.has_previous %}
+        <a class="btn btn-outline-secondary" href="?page=1">&laquo; 先頭</a>
+        <a class="btn btn-outline-secondary" href="?page={{ page_obj.previous_page_number }}">前へ</a>
+        {% else %}
+        <a class="btn btn-outline-secondary disabled">&laquo; 先頭</a>
+        <a class="btn btn-outline-secondary disabled">前へ</a>
+        {% endif %}
+
+        {# 次へ #}
+        {% if page_obj.has_next %}
+        <a class="btn btn-outline-secondary" href="?page={{ page_obj.next_page_number }}">次へ</a>
+        <a class="btn btn-outline-secondary" href="?page={{ page_obj.paginator.num_pages }}">最後 &raquo;</a>
+        {% else %}
+        <a class="btn btn-outline-secondary disabled">次へ</a>
+        <a class="btn btn-outline-secondary disabled">最後 &raquo;</a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
