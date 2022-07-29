@@ -1,6 +1,33 @@
 from django import forms
-from jigosho.models import jigo_Mst
+from jigosho.models import jigo_Mst, jigo_Tag, shogai_shubetu_Tag
 
+
+class jigo_MstSearchForm(forms.Form):
+    '''
+    事業所マスタ検索フォーム
+    '''
+    jigo_name = forms.CharField(
+        label='事業所名検索',
+        required=False,
+        widget=forms.TextInput(attrs={'class': 'form-control form-control-sm',
+                                      'autocomplete': 'off',
+                                      'placeholder': '事業所名',
+                                      })
+    )
+
+    search_jigo_Tag = forms.ModelChoiceField(
+        label='事業形態での絞り込み',
+        required=False,
+        queryset=jigo_Tag.objects.order_by('name'),
+        widget=forms.Select(attrs={'class': 'form-select form-select-sm'})
+    )
+
+    search_shogai_shubetu_Tag = forms.ModelChoiceField(
+        label='障害種別での絞り込み',
+        required=False,
+        queryset=shogai_shubetu_Tag.objects.order_by('name'),
+        widget=forms.Select(attrs={'class': 'form-select form-select-sm'})
+    )
 
 class jigo_MstForm(forms.ModelForm):
     '''

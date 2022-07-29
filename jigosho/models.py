@@ -80,9 +80,9 @@ class jigo_Mst(models.Model):
     update_date = models.DateTimeField(verbose_name='更新日時', auto_now=True)
     update_user = models.CharField(verbose_name='更新ユーザ', max_length=50, null=True)
 
-    #事業モデルを紐づけ
+    #事業形態モデルを紐づけ
     jigo_tags = models.ManyToManyField(jigo_Tag, verbose_name='事業タグ')
-    #事業モデルを紐づけ
+    #障害種別モデルを紐づけ
     shogai_shubetu_tags = models.ManyToManyField(shogai_shubetu_Tag, verbose_name='障害区分タグ')
     # 管理サイト上の表示設定
     def __str__(self):

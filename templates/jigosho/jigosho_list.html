@@ -1,18 +1,45 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
 {% block content %}
 
-<h1>商品一覧</h1>
+<h1>事業所一覧</h1>
 
-<a class="btn btn-outline-dark" href="*">新規登録</a>
+<!-- 検索フォーム -->
+<form class="mt-2" id="search-form" action="" method="GET">
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">事業所名</label>
+            {{ search_form.jigo_name }}
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <label class="form-label">事業形態</label>
+            {{ search_form.search_jigo_Tag }}
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <label class="form-label">障害種別</label>
+            {{ search_form.search_shogai_shubetu_Tag }}
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-2">
+            <button class="btn btn-sm btn-primary ml-4" type="submit">検索</button>
+        </div>
+    </div>
+</form>
+
+<a class="btn btn-outline-dark" href="{% url 'jigosho:jigo_mst_new' %}">新規登録</a>
+
+<!-- 一覧表示 -->
 <table class="table">
     <thead>
         <tr>
-            <td>ジャンル</td>
-            <td>商品名</td>
-            <td>価格</td>
-            <td>サイクル</td>
-            <td>削除フラグ</td>
+            <td>事業所名</td>
+            <td>事業形態</td>
+            <td>障害種別</td>
             <td>備考</td>
             <td></td>
         </tr>
@@ -20,10 +47,16 @@
     {% for product in jigo_mst_list %}
     <tr>
         <td>{{ product.jigo_name }}</td>
-        <td>{{ product.jigo_name }}</td>
-        <td>{{ product.url }} 円</td>
-        <td>{{ product.mail }}日</td>
-        <td>{{ product.tel }}</td>
+        <td>
+            {% for jigo in product.jigo_tags.all %}
+            {{ jigo.name }}
+            {% endfor %}
+        </td>
+        <td>
+            {% for shogai_shubetu in product.shogai_shubetu_tags.all %}
+            {{ shogai_shubetu.name }}
+            {% endfor %}
+        </td>
         <td>{{ product.biko }}</td>
         <td>
             <a class="btn btn-primary" href="*">編集</a>
@@ -33,6 +66,7 @@
     {% endfor %}
 </table>
 
+<!-- ページネーション -->
 <div class="d-flex justify-content-between">
     <div>
         {# ページの表示 #}
@@ -59,4 +93,5 @@
     </div>
 </div>
 
+<script src="{% static 'js/jigoshoSearch.js' %}"></script>
 {% endblock %}
