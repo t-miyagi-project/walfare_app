@@ -1,13 +1,36 @@
 {% extends 'base/base.html' %}
-{% block title %}トピック作成 - {{ block.super }}{% endblock %}
+
 {% block content %}
-<div class="ui grid stackable">
+
+<h1>事業所登録</h1>
+<!-- パンくずリスト -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'jigosho:top' %}">TOP</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'jigosho:jigo_mst_list_view' %}">事業所一覧</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'jigosho:jigo_mst_new' %}">事業所登録</a></li>
+      </ol>
+    </nav>
+  </div>
+</nav>
+
+<form method="POST">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for field in form %}
+  <div class="mt-4">
+      {{ field.label }}
+      {{ field }}
+      {{ field.errors }}
+  </div>
+  {% endfor %}
+  <button class="btn mt-4" type="submit" name="button">送信</button>
+</form>
+
+<!-- <div class="ui grid stackable">
   <div class="eleven wide column">
-    <div class="ui breadcrumb">
-      <a href="" class="section">TOP</a>
-      <i class="right angle icon divider"></i>
-      <a class="active section">トピック作成</a>
-    </div>
     <div class="ui segment">
       <div class="content">
         <div class="header"><h3>トピック作成</h3></div>
@@ -25,5 +48,5 @@
     </div>
   </div>
   {% include 'base/sidebar.html' %}
-</div>
+</div> -->
 {% endblock %}

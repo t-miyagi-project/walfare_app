@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
 from django.views import View
-from .models import jigo_Mst
+from .models import jigo_Mst, jigo_Tag, shogai_shubetu_Tag
 from .services.service import jigo_MstService
 
 from .forms.jigosho_form import jigo_MstForm, jigo_MstSearchForm
@@ -82,7 +82,16 @@ class jigo_MstCreateView(CreateView):
         initial = super().get_initial()
         #initial['regist_user'] = self.request.user  # 登録ユーザにログインユーザーに設定
         return initial
-    
+
+    # def get_context_data(self):
+    #     """
+    #     テンプレートに辞書データを渡す。
+    #     """
+    #     context = super().get_context_data()
+    #     context['jigoTags'] = jigo_Tag.objects.all()
+    #     context['shogaishubetuTags'] = shogai_shubetu_Tag.objects.all()
+    #     return context
+
     def post(self, request, **kwargs):
         """
         作成者と修正者およびワークスペースの自動入力

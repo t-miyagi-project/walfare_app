@@ -71,8 +71,8 @@ class jigo_MstForm(forms.ModelForm):
                                    'placeholder': '事業所紹介文(詳細)',
                                    'class': 'form-control',
                                    'rows': '2'}),
-            'jigo_tags': forms.Select(attrs={'class': 'form-select'}),
-            'shogai_shubetu_tags': forms.Select(attrs={'class': 'form-select'}),
+            #'jigo_tags': forms.Select(attrs={'class': 'form-select'}),
+            #'shogai_shubetu_tags': forms.Select(attrs={'class': 'form-select'}),
         }
 
     #フィールドの並び替え
