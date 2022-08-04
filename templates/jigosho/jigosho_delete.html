@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>事業所削除</h1>
+<!-- パンくずリスト -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'jigosho:top' %}">TOP</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'jigosho:jigo_mst_list_view' %}">事業所一覧</a></li>
+        <li class="breadcrumb-item active" aria-current="page">事業所削除</li>
+      </ol>
+    </nav>
+  </div>
+</nav>
+
+<p class="mt-5"> 本当に削除してよろしいですか？</p>
+
+<p class="mt-4">事業所名：{{ object.jigo_name }}</p>
+
+<form class="mt-4" method="post">
+  {% csrf_token %}
+  <a class="btn btn-info" href="{% url 'jigosho:jigo_mst_list_view' %}">
+    いいえ、一覧に戻ります
+  </a>
+  <button type="submit" class="btn btn-danger">
+    はい、削除します
+  </button>
+</form>
+
+{% endblock %}

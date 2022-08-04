@@ -10,8 +10,14 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='base/top.html'), name='top'),
     # 事業所リスト
     path("jigosho/list", views.jigo_MstListView.as_view(), name='jigo_mst_list_view'),
+    # 事業所登録
     path("jigosho/new", views.jigo_MstCreateView.as_view(), name='jigo_mst_new'),
-
+    # 事業所編集
+    path('jigosho/update/<int:pk>/', views.jigo_MstUpdateView.as_view(), name='jigo_mst_update'),
+    # 事業所削除
+    path('jigosho/delete/<int:pk>/', views.jigo_MstDeleteView.as_view(), name='jigo_mst_delete'),
+    
+    
     # # 一覧
     # path("prduct/list/", views.ProductListView.as_view(), name="list"),
     # # 

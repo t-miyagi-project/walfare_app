@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
 {% block content %}
 
 <h1>事業所登録</h1>
@@ -10,7 +10,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'jigosho:top' %}">TOP</a></li>
         <li class="breadcrumb-item"><a href="{% url 'jigosho:jigo_mst_list_view' %}">事業所一覧</a></li>
-        <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'jigosho:jigo_mst_new' %}">事業所登録</a></li>
+        <li class="breadcrumb-item active" aria-current="page">事業所登録</li>
       </ol>
     </nav>
   </div>
@@ -26,7 +26,7 @@
       {{ field.errors }}
   </div>
   {% endfor %}
-  <button class="btn mt-4" type="submit" name="button">送信</button>
+  <button class="btn mt-4" type="submit" name="button">作成</button>
 </form>
 
 <!-- <div class="ui grid stackable">

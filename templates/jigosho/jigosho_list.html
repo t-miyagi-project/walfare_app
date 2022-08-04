@@ -49,7 +49,8 @@
                 <th scope="col" class="text-start ls-widest" width="10%">事業形態</th>
                 <th scope="col" class="text-start ls-widest" width="10%">障害種別</th>
                 <th scope="col" class="text-start ls-widest">備考</th>
-                <th scope="col" class="text-center ls-widest" width="10%">削除</th>
+                <th scope="col" class="text-center ls-widest" width="5%">編集</th>
+                <th scope="col" class="text-center ls-widest" width="5%">削除</th>
             </tr>
         </thead>
         <tbody>
@@ -72,10 +73,14 @@
                     {% endif %}
                 </th>
                 <th class="text-center">
-                    <button type="button" class="btn btn-floating btn-danger">
-
+                    <a class="btn btn-floating btn-info" href="{% url 'jigosho:jigo_mst_update' jigolist.pk %}" data-mdb-toggle="tooltip" data-mdb-placement="top" title="編集">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </th>
+                <th class="text-center">
+                    <a class="btn btn-floating btn-danger" href="{% url 'jigosho:jigo_mst_delete' jigolist.pk %}" data-mdb-toggle="tooltip" data-mdb-placement="top" title="削除">
                         <i class="far fa-trash-alt"></i>
-                    </button>
+                    </a>
                 </th>
             </tr>
             {% endfor %}

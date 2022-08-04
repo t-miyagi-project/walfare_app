@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.views import View
 from .models import jigo_Mst, jigo_Tag, shogai_shubetu_Tag
 from .services.service import jigo_MstService
@@ -94,7 +94,7 @@ class jigo_MstCreateView(CreateView):
 
     def post(self, request, **kwargs):
         """
-        作成者と修正者およびワークスペースの自動入力
+        作成者と修正者の自動入力
         """
         request.POST = request.POST.copy()
         # ログインユーザー情報の取得
@@ -115,3 +115,44 @@ class jigo_MstCreateView(CreateView):
         object.update_user = self.request.user.username
         object.save()
         return super().form_valid(form)
+
+class jigo_MstUpdateView(UpdateView):
+    """
+    編集(事業所マスタ)
+    """
+    template_name = 'jigosho/jigosho_update.html'
+    form_class = jigo_MstForm
+    model = jigo_Mst
+    success_url = reverse_lazy('jigosho:jigo_mst_list_view')
+
+    def post(self, request, **kwargs):
+        """
+        修正者の自動入力
+        """
+        request.POST = request.POST.copy()
+        # ログインユーザー情報の取得
+        user = request.user
+        # 更新ユーザにログインユーザーを入力
+        #request.POST['regist_user'] = user.username
+        request.POST['update_user'] = user.username
+
+        return super().post(request, **kwargs)
+    
+    def form_valid(self, form):
+        """
+        フォーム入力後の処理(保存時の前処理)
+        """
+        # ユーザーを投稿者として保存できるようにする
+        object = form.save(commit=False)
+        #object.regist_user = self.request.user.username
+        object.update_user = self.request.user.username
+        object.save()
+        return super().form_valid(form)
+
+class jigo_MstDeleteView(DeleteView):
+    """
+    削除(事業所マスタ)
+    """
+    template_name = 'jigosho/jigosho_delete.html'
+    model = jigo_Mst
+    success_url = reverse_lazy('jigosho:jigo_mst_list_view')
