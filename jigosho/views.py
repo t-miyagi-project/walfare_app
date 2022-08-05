@@ -14,8 +14,8 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-
-class jigo_MstListView(ListView):
+#LoginRequiredMixinはログインしていないとログインページにリダイレクトされる
+class jigo_MstListView(LoginRequiredMixin, ListView):
     """
     一覧
     """
@@ -68,7 +68,7 @@ class jigo_MstListView(ListView):
 
         return context
 
-class jigo_MstCreateView(CreateView):
+class jigo_MstCreateView(LoginRequiredMixin, CreateView):
     """
     新規作成(事業所マスタ)
     """
@@ -116,7 +116,7 @@ class jigo_MstCreateView(CreateView):
         object.save()
         return super().form_valid(form)
 
-class jigo_MstUpdateView(UpdateView):
+class jigo_MstUpdateView(LoginRequiredMixin, UpdateView):
     """
     編集(事業所マスタ)
     """
@@ -149,7 +149,7 @@ class jigo_MstUpdateView(UpdateView):
         object.save()
         return super().form_valid(form)
 
-class jigo_MstDeleteView(DeleteView):
+class jigo_MstDeleteView(LoginRequiredMixin, DeleteView):
     """
     削除(事業所マスタ)
     """
